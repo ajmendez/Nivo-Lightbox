@@ -22,7 +22,8 @@
             afterHideLightbox: function(){},
             onPrev: function(element){},
             onNext: function(element){},
-            errorMessage: 'The requested content cannot be loaded. Please try again later.'
+            errorMessage: 'The requested content cannot be loaded. Please try again later.',
+            videoAutoplay: false,
         };
 
     function NivoLightbox(element, options){
@@ -205,8 +206,15 @@
                     src = 'http://player.vimeo.com/video/'+ video[3];
                     classTerm = 'nivo-lightbox-vimeo';
                 }
-
+                
+                
+                
                 if(src){
+                    if (this.options.videoAutoplay) {
+                        // Works for both youtube and vimeo videos
+                        src += '&autoplay=1'
+                    }
+                    
                     var iframeVideo = $('<iframe>', {
                         src: src,
                         'class': classTerm,
